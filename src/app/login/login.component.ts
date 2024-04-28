@@ -3,6 +3,7 @@ import { AppService } from '../app.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { log } from 'console';
 
 @Component({
   selector: 'app-login',

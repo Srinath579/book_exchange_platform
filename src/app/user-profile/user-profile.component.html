@@ -1,0 +1,24 @@
+<div *ngIf="user">
+    <h2>User Details</h2>
+    <p>Name: {{ user.EMAIL_ID }}</p>
+    <p>Address: {{ user.ADDRESS }}</p>
+    <p>Last login date: {{ user.last_login_date | date:'MMMM d yyyy' }}</p>
+    <p>Registered date: {{ user.registration_date | date:'MMMM d yyyy' }}</p>
+  </div>
+  
+  <h3>Books</h3>
+  <ul>
+    <li *ngFor="let book of books">
+        <div>{{ book.title }}</div>
+        <div>{{ book.author }}</div>
+        <img *ngIf="book.book_image" [src]="book.book_image" alt="Book Cover">
+    </li>
+  </ul>
+
+
+
+  <h2>Create a Book</h2>
+  <app-book-form (bookCreated)="onBookCreated()"></app-book-form>
+  <!-- Display user's existing books -->
+
+  

@@ -14,6 +14,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserRequestsComponent } from './user-requests/user-requests.component';
 import { RequestsComponent } from './requests/requests.component';
+import { BookFormComponent } from './book-form/book-form.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RequestsComponent } from './requests/requests.component';
     TopNavComponent,
     UserProfileComponent,
     UserRequestsComponent,
-    RequestsComponent
+    RequestsComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,

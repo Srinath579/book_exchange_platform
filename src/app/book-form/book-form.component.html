@@ -1,0 +1,28 @@
+<form (submit)="onSubmit()">
+    <div>
+      <label>Title</label>
+      <input type="text" [(ngModel)]="title" name="title" required>
+    </div>
+    <div>
+      <label>Author</label>
+      <input type="text" [(ngModel)]="author" name="author" required>
+    </div>
+    <div>
+      <label>Genre</label>
+      <input type="text" [(ngModel)]="genre" name="genre">
+    </div>
+    <div>
+      <label>Condition</label>
+      <input type="text" [(ngModel)]="bookCondition" name="bookCondition">
+    </div>
+    <div>
+      <label>Availability Status</label>
+      <input type="text" [(ngModel)]="availabilityStatus" name="availabilityStatus">
+    </div>
+    <div>
+      <label>Image</label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <button type="submit">Create Book</button>
+  </form>
+  

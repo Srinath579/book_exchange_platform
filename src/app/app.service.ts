@@ -14,7 +14,6 @@ export class AppService {
     CreateLoginSession(email: any, password: any) {
         let httpParams = new HttpParams();
         let httpHeaders = new HttpHeaders();
-        const usercredentials = { email: email, password: password }
         httpHeaders = httpHeaders.set('content-type', 'application/json')
             .set('Access-Control-Allow-Origin', '*')
             .set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')

@@ -1,3 +1,16 @@
 <div class="container">
+    <h2>Books</h2>
+    <div class="card-group">
+        <div class="card book-card" *ngFor="let book of books">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">Author: {{ book.author }}</p>
+            <p class="card-text">Genre: {{ book.genre }}</p>
+            <p class="card-text">Condition: {{ book.book_condition }}</p>
+            <p class="card-text">Availability: {{ book.availability_status }}</p>
+            <p class="card-text">Owner ID: {{ book.owner_id }}</p>
+          </div>
+        </div>
+      </div>
     
 </div>
