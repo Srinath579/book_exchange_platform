@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
+    //get userid
     if (sessionStorage.getItem('userid') && sessionStorage.getItem('token')) {
       this.router.navigate(['/home']);
     }

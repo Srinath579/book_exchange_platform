@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
