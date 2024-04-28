@@ -19,7 +19,7 @@
         <div id="error">
             <p *ngIf="this.errorMessage!=''" class="text-danger">{{errorMessage}}</p>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3"
+        <button type="submit" class="btn btn-primary btn-block"
             (click)="onSubmit(email.value, password.value, repassword.value)">Submit</button>
         <div class="mt-2">
             <p>Already having an Account? Login <a [routerLink]="['/login']" class="d-inline-block">here</a></p>

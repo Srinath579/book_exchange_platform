@@ -1,3 +1,21 @@
 <div class="container">
-    
+    <div class="row">
+        <div *ngFor="let item of Booklist" class="col-md-auto mt-5">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top"
+                    src="{{item.ImgSrc}}"
+                    alt="Card image cap" height="200" width="200">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{item.BookName}}</h5>
+                    <p class="card-text">
+                        <b>Author:</b> {{item.Author}}
+                        <b>Owned by:</b> {{item.OwnedBy}}
+                    </p>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-sm btn-outline-primary" type="button" (click)="SubmitRequest(this.item.BookId)">Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
