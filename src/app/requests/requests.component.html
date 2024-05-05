@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container mx-auto">
     <div class="row">
         <div *ngFor="let item of Requestlist" class="col-md-auto mt-5">
-            <div class="card" style="width: 15rem;">
-                <img class="card-img-top" src="{{item.ImgSrc}}" alt="Card image cap" height="200" width="200">
+            <div class="card bg-dark text-white" style="width: 15rem;">
+                <img class="card-img-top mt-2" src="{{item.ImgSrc}}" alt="Card image cap" height="180" width="200">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{item.BookName}}</h5>
                     <p class="card-text">
@@ -10,8 +10,14 @@
                         <b>Requested by:</b> {{item.RequestedBy}}
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button class="btn btn-sm btn-outline-success me-md-2" type="button">Approve</button>
-                        <button class="btn btn-sm btn-outline-danger" type="button">Decline</button>
+                        <button *ngIf="this.item.Status==='Pending'" class="btn btn-sm btn-outline-success"
+                            type="button">Approve</button>
+                        <button *ngIf="this.item.Status==='Approved'" class="btn btn-sm text-success"
+                            type="button">Approved</button>
+                        <button *ngIf="this.item.Status==='Pending'" class="btn btn-sm btn-outline-danger"
+                            type="button">Decline</button>
+                        <button *ngIf="this.item.Status==='Declined'" class="btn btn-sm text-danger"
+                            type="button">Declined</button>
                     </div>
                 </div>
             </div>

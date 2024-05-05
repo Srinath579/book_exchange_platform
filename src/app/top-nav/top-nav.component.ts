@@ -8,16 +8,17 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrl: './top-nav.component.css'
 })
 export class TopNavComponent implements OnInit {
-
+  public UserName: any = '';
   ngOnInit(): void {
-    if (!sessionStorage.getItem('userid') && !sessionStorage.getItem('token') && this.router.url !== '/signup') {
+    if (!window.sessionStorage.getItem('emailid') && !window.sessionStorage.getItem('token') && this.router.url !== '/signup') {
       this.router.navigate(['/login']);
     }
-    else if (!sessionStorage.getItem('userid') && !sessionStorage.getItem('token') && this.router.url === '/signup') {
+    else if (!window.sessionStorage.getItem('emailid') && !window.sessionStorage.getItem('token') && this.router.url === '/signup') {
       this.router.navigate(['/signup']);
     }
+    this.UserName = window.sessionStorage.getItem('username');
   }
-  constructor(private router: Router) { };
+  constructor(public router: Router) { };
   Logout() {
     sessionStorage.clear();
     this.router.navigate(['/login']);
