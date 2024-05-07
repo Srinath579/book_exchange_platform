@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="row my-4">
-        <div *ngFor="let item of Booklist" class="col-md-auto">
+        <div *ngFor="let item of Booklist;let i in index" class="col-md-auto">
             <div class="card bg-dark text-white" style="width: 15rem;">
                 <div *ngIf="item.AVAILABILITY_STATUS==='UNAVAILABLE'" class="form-check form-switch my-2 me-2 d-flex justify-content-end">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="ChangeAvailability(this.item.BOOK_ID)">
@@ -66,7 +66,7 @@
                     </p>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button class="btn btn-sm btn-outline-danger" type="button"
-                            (click)="DeleteUserBook(this.item.BOOK_ID)">Remove Book</button>
+                            (click)="DeleteUserBook(this.item.BOOK_ID);FilterBookList(this.item.BOOK_ID);">Remove Book</button>
                         <!-- </div>
                     <div class="d-grid gap-2 col-6 mx-auto"> -->
                         <!-- <button class="btn btn-sm btn-outline-success" type="button" (click)="ChangeAvailability(this.item.BOOK_ID)">Change Book

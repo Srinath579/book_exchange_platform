@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit{
-  Booklist!: any[];
+  Booklist: any[]=[];
   public emailid = window.sessionStorage.getItem('emailid');
   public username = window.sessionStorage.getItem('username');
   async ngOnInit(): Promise<void> {
@@ -25,5 +25,8 @@ export class UserProfileComponent implements OnInit{
 
   async DeleteUserBook(BookId: any) {
     await this.appService.deleteUserBook(BookId).subscribe();
+  }
+  FilterBookList(bookid: number):void{
+    this.Booklist = this.Booklist.filter(item => (item.BOOK_ID !== bookid));
   }
 }
