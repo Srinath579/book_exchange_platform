@@ -1,38 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
   styleUrl: './requests.component.css'
 })
-export class RequestsComponent {
-  Requestlist = [
-    {
-      BookId: 123,
-      ImgSrc: 'https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg',
-      BookName: 'The Story of Kalidas',
-      Author: 'H.D. Bhatt Shailesh',
-      RequestedBy: 'Sai Nikshay',
-      Status: 'Pending'
-    },
-    {
-      BookId: 123,
-      ImgSrc: 'https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg',
-      BookName: 'The Story of Kalidas',
-      Author: 'H.D. Bhatt Shailesh',
-      RequestedBy: 'Sai Nikshay',
-      Status: 'Approved'
-    },
-    {
-      BookId: 123,
-      ImgSrc: 'https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg',
-      BookName: 'The Story of Kalidas',
-      Author: 'H.D. Bhatt Shailesh',
-      RequestedBy: 'Sai Nikshay',
-      Status: 'Declined'
+export class RequestsComponent implements OnInit {
+  Requestlist: any[] = [];
+  async ngOnInit(): Promise<void> {
+    await this.appService.getExchangeRequests().subscribe(response => {
+      this.Requestlist = response.exchangerequests;
+    });
+    console.log(this.Requestlist);
+  }
+  constructor(private router: Router, private appService: AppService, private http: HttpClient) { };
+
+  async UpdateRequest(ExchangeId: any, strUpdate:string) {
+    let updatedstatus='';
+    if (strUpdate === 'Accept') {
+      updatedstatus = 'Accepted';
     }
-  ]
-  SubmitRequest(BookId: any) {
-    console.log(BookId);
+    else if (strUpdate === 'Decline'){
+      updatedstatus = 'Declined';
+    }
+    await this.appService.updateExchangeStatus(ExchangeId, updatedstatus).subscribe();
+    let itemIndex = this.Requestlist.findIndex(item => item.EXCHANGE_ID == ExchangeId);
+    this.Requestlist[itemIndex].STATUS = updatedstatus;
   }
 }

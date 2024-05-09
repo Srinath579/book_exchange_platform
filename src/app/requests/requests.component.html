@@ -1,22 +1,27 @@
 <div class="container mx-auto">
-    <div class="row">
-        <div *ngFor="let item of Requestlist" class="col-md-auto mt-5">
+    <div class="row my-4">
+        <div *ngFor="let item of Requestlist;let i in index" class="col-md-auto">
             <div class="card bg-dark text-white" style="width: 15rem;">
-                <img class="card-img-top mt-2" src="{{item.ImgSrc}}" alt="Card image cap" height="180" width="200">
+                <img class="card-img-top mt-2"
+                    src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg"
+                    alt="Card image cap" height="180" width="200">
                 <div class="card-body">
-                    <h5 class="card-title text-center">{{item.BookName}}</h5>
+                    <h5 class="card-title text-center">{{item.BOOK_NAME}}</h5>
                     <p class="card-text">
-                        <b>Author:</b> {{item.Author}}
-                        <b>Requested by:</b> {{item.RequestedBy}}
+                        <b>Author:</b> {{item.AUTHOR}}<br>
+                        <b>Owned by:</b> {{item.OWNER_NAME}}<br>
+                        <b>Requested by:</b> {{item.REQUESTER_NAME}}<br>
+                        <b>Return After:</b> {{item.DURATION_OF_BOOK_1}} {{item.DURATION_OF_BOOK_2}}<br>
+                        <b>Status:</b> {{item.STATUS}}
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button *ngIf="this.item.Status==='Pending'" class="btn btn-sm btn-outline-success"
-                            type="button">Approve</button>
-                        <button *ngIf="this.item.Status==='Approved'" class="btn btn-sm text-success"
-                            type="button">Approved</button>
-                        <button *ngIf="this.item.Status==='Pending'" class="btn btn-sm btn-outline-danger"
-                            type="button">Decline</button>
-                        <button *ngIf="this.item.Status==='Declined'" class="btn btn-sm text-danger"
+                        <button *ngIf="this.item.STATUS==='Requested'" class="btn btn-sm btn-outline-success"
+                            type="button" (click)="UpdateRequest(this.item.EXCHANGE_ID,'Accept')">Accept</button>
+                        <button *ngIf="this.item.STATUS==='Accepted'" class="btn btn-sm text-success"
+                            type="button">Accepted</button>
+                        <button *ngIf="this.item.STATUS==='Requested'" class="btn btn-sm btn-outline-danger"
+                            type="button" (click)="UpdateRequest(this.item.EXCHANGE_ID,'Decline')">Decline</button>
+                        <button *ngIf="this.item.STATUS==='Declined'" class="btn btn-sm text-danger"
                             type="button">Declined</button>
                     </div>
                 </div>
