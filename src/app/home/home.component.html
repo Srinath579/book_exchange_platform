@@ -1,3 +1,20 @@
-<div class="container">
-    
+<div class="container mx-auto">
+    <div class="row">
+        <div *ngFor="let item of Booklist" class="col-md-auto mt-5">
+            <div class="card bg-dark text-white" style="width: 15rem;">
+                <img class="card-img-top mt-2" src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg" alt="Card image cap" height="180" width="200">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{item.TITLE}}</h5>
+                    <p class="card-text">
+                        <b>Author:</b> {{item.AUTHOR}}<br>
+                        <b>Owned by:</b> {{item.OWNER_NAME}}
+                    </p>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-sm btn-outline-primary" type="button"
+                            (click)="SubmitRequest(this.item.BOOK_ID)">Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,79 @@
+<div class="container mx-auto">
+    <div class="row my-4">
+        <div class="col">
+            <h1>Your Profile</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label for="inputtext" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="inputtext" value="{{username}}" disabled>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    value="{{emailid}}" disabled>
+            </div>
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col">
+            <h1>Your Books</h1>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-danger">Add book</button>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div *ngFor="let item of Booklist;let i in index" class="col-md-auto">
+            <div class="card bg-dark text-white" style="width: 15rem;">
+                <div *ngIf="item.AVAILABILITY_STATUS==='UNAVAILABLE'" class="form-check form-switch my-2 me-2 d-flex justify-content-end">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="ChangeAvailability(this.item.BOOK_ID)">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Public
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                        </svg>
+                    </label>
+                </div>
+                <div *ngIf="item.AVAILABILITY_STATUS==='AVAILABLE'" class="form-check form-switch my-2 me-2 d-flex justify-content-end">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="ChangeAvailability(this.item.BOOK_ID)" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Public
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                        </svg>
+                    </label>
+                </div>
+                <img class="card-img-top mt-2"
+                    src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg"
+                    alt="Card image cap" height="180" width="200">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{item.TITLE}}</h5>
+                    <p class="card-text">
+                        <b>Author:</b> {{item.AUTHOR}}<br>
+                        <b>Owned by:</b> You
+                    </p>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-sm btn-outline-danger" type="button"
+                            (click)="DeleteUserBook(this.item.BOOK_ID);FilterBookList(this.item.BOOK_ID);">Remove Book</button>
+                        <!-- </div>
+                    <div class="d-grid gap-2 col-6 mx-auto"> -->
+                        <!-- <button class="btn btn-sm btn-outline-success" type="button" (click)="ChangeAvailability(this.item.BOOK_ID)">Change Book
+                            Status</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
