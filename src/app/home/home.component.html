@@ -2,7 +2,9 @@
     <div class="row">
         <div *ngFor="let item of Booklist" class="col-md-auto mt-5">
             <div class="card bg-dark text-white" style="width: 15rem;">
-                <img class="card-img-top mt-2" src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg" alt="Card image cap" height="180" width="200">
+                <img class="card-img-top mt-2"
+                    src="{{(item.BOOK_IMAGE).toString()}}"
+                    alt="Card image cap" height="180" width="200">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{item.TITLE}}</h5>
                     <p class="card-text">
@@ -11,10 +13,63 @@
                     </p>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button class="btn btn-sm btn-outline-primary" type="button"
-                            (click)="SubmitRequest(this.item.BOOK_ID)">Request</button>
+                            (click)="open(content)">Request</button>
                     </div>
                 </div>
             </div>
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Request for Exchange</h4>
+                    <button type="button" class="btn-close" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 d-flex justify-content-center">
+                            <div class="card bg-dark text-white" style="width: 15rem;">
+                                <img class="card-img-top mt-2"
+                                    src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg"
+                                    alt="Card image cap" height="180" width="200">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{item.TITLE}}</h5>
+                                    <p class="card-text">
+                                        <b>Author:</b> {{item.AUTHOR}}<br>
+                                        <b>Owned by:</b> {{item.OWNER_NAME}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="returnBy">Return by</label>
+                                <div class="input-group">
+                                    <input id="returnBy" class="form-control" placeholder="yyyy-dd-mm" name="dp"
+                                        ngbDatepicker #dp="ngbDatepicker" #returnBy />
+                                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="deliverymtd">Delivery Method</label>
+                                <div class="input-group">
+                                    <select #deliverymtd class="form-select" aria-label="Default select example">
+                                        <option selected>Please select an Option</option>
+                                        <option value="Postal">Postal</option>
+                                        <option value="Nodal Point">Nodal Point</option>
+                                        <option value="Home Pickup">Home Pickup</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark"
+                        (click)="SubmitExchangeRequest(returnBy.value, deliverymtd.value, item.OWNER_EMAIL_ID, item.BOOK_ID, item.TITLE);modal.close()">Request
+                        for
+                        Exchange</button>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

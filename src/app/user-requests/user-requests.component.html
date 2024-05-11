@@ -3,19 +3,20 @@
         <div *ngFor="let item of Booklist;let i in index" class="col-md-auto">
             <div class="card bg-dark text-white" style="width: 15rem;">
                 <img class="card-img-top mt-2"
-                    src="https://cdn.kobo.com/book-images/0c67417c-fed9-40f3-8d69-895e3f0ff2de/1200/1200/False/the-story-of-kalidas.jpg"
+                    src="{{(item.BOOK_IMAGE).toString()}}"
                     alt="Card image cap" height="180" width="200">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{item.BOOK_NAME}}</h5>
                     <p class="card-text">
                         <b>Author:</b> {{item.AUTHOR}}<br>
                         <b>Owned by:</b> {{item.OWNER_NAME}}<br>
-                        <b>Return After:</b> {{item.DURATION_OF_BOOK_1}} {{item.DURATION_OF_BOOK_2}}<br>
+                        <b>Return by:</b> {{item.RETURN_DATE | date: 'yyyy-MM-dd'}}<br>
+                        <b>Delivery:</b> {{item.DELIVERY_METHOD}}<br>
                         <b>Status:</b> {{item.STATUS}}
                     </p>
                     <div class="d-flex justify-content-md-center">
                         <button class="btn btn-sm btn-outline-danger" type="button"
-                            (click)="DeleteUserRequest(this.item.EXCHANGE_ID);FilterBookList(this.item.BOOK_ID);">Remove
+                            (click)="DeleteUserRequest(this.item.EXCHANGE_ID);FilterBookList(this.item.EXCHANGE_ID);">Remove
                             Request</button>
                         <!-- </div>
                         <div class="d-grid gap-2 col-6 mx-auto"> -->

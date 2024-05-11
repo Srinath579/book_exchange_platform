@@ -15,9 +15,11 @@ export class AppService {
     public _DELETEUSERBOOK_API_ENDPOINT: string = this._API_ENDPOINT + '/deleteuserbook';
     public _CHANGEAVAILABILITY_API_ENDPOINT: string = this._API_ENDPOINT + '/changeavailability';
     public _USERREQUESTS_API_ENDPOINT: string = this._API_ENDPOINT + '/userrequests';
+    public _SUBMITEXCHANGEREQUESTS_API_ENDPOINT: string = this._API_ENDPOINT + '/submitexchangerequest';
     public _DELETEUSERREQUESTS_API_ENDPOINT: string = this._API_ENDPOINT + '/deleterequest';
     public _EXCHANGEREQUESTS_API_ENDPOINT: string = this._API_ENDPOINT + '/getexchangerequests';
     public _UPDATEEXCHANGEREQUESTS_API_ENDPOINT: string = this._API_ENDPOINT + '/updateexchangerequest';
+    public _ADDUSERBOOK_API_ENDPOINT: string = this._API_ENDPOINT + '/adduserbook';
 
     constructor(private http: HttpClient) { }
 
@@ -114,5 +116,34 @@ export class AppService {
             'updatedstatus': `${updatedstatus}`
         });
         return this.http.put<any>(this._UPDATEEXCHANGEREQUESTS_API_ENDPOINT, {}, { headers: httpheaders });
+    }
+
+    submitExchangeRequest(returnByDate: any, deliveryMethod: string, owneremailid:string, bookid:any, bookname:string) {
+        let useremailid = window.sessionStorage.getItem('emailid');
+        let username = window.sessionStorage.getItem('username');
+        let usertoken = window.sessionStorage.getItem('token');
+        let httpheaders = new HttpHeaders({
+            'Authorization': `Bearer ${usertoken}`,
+            'useremailid': `${useremailid}`,
+            'returnByDate': `${returnByDate}`,
+            'deliveryMethod': `${deliveryMethod}`,
+            'owneremailid': `${owneremailid}`,
+            'username': `${username}`,
+            'bookid': `${bookid}`,
+            'bookname': `${bookname}`
+        });
+        return this.http.put<any>(this._SUBMITEXCHANGEREQUESTS_API_ENDPOINT, {}, { headers: httpheaders });
+    }
+
+    addUserBook(formData:any) {
+        let useremailid = window.sessionStorage.getItem('emailid');
+        let username = window.sessionStorage.getItem('username');
+        let usertoken = window.sessionStorage.getItem('token');
+        let httpheaders = new HttpHeaders({
+            'Authorization': `Bearer ${usertoken}`,
+            'useremailid': `${useremailid}`,
+            'username': `${username}`,
+        });
+        return this.http.put<any>(this._ADDUSERBOOK_API_ENDPOINT, { formData }, { headers: httpheaders });
     }
 }
