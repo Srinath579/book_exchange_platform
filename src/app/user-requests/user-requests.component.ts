@@ -19,11 +19,11 @@ export class UserRequestsComponent implements OnInit {
   }
   constructor(private router: Router, private appService: AppService, private http: HttpClient) { };
   
-  async DeleteUserRequest(BookId: any) {
-    await this.appService.deleteUserRequest(BookId).subscribe();
+  async DeleteUserRequest(ExchangeId: any) {
+    await this.appService.deleteUserRequest(ExchangeId).subscribe();
   }
 
-  FilterBookList(bookid: number): void {
-    this.Booklist = this.Booklist.filter(item => (item.BOOK_ID !== bookid));
+  FilterBookList(ExchangeId: number): void {
+    this.Booklist = this.Booklist.filter(item => (item.EXCHANGE_ID !== ExchangeId));
   }
 }
