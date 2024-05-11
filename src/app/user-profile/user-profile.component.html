@@ -68,7 +68,12 @@
                     <h5 class="card-title text-center">{{item.TITLE}}</h5>
                     <p class="card-text">
                         <b>Author:</b> {{item.AUTHOR}}<br>
-                        <b>Owned by:</b> You
+                        <b>Owned by:</b> You<br>
+                        <b>Condition:</b>
+                        <a *ngIf="item.BOOK_CONDITION==='G'" class="d-inline text-white ms-2 mb-0" style="text-decoration:none;">Good</a>
+                        <a *ngIf="item.BOOK_CONDITION==='SD'" class="d-inline text-white ms-2 mb-0"
+                            style="text-decoration:none; font-size:15px;">Slightly Damaged</a>
+                        <a *ngIf="item.BOOK_CONDITION==='D'" class="d-inline text-white ms-2 mb-0" style="text-decoration:none;">Damaged</a>
                     </p>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button class="btn btn-sm btn-outline-danger" type="button"

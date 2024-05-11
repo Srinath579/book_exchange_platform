@@ -10,6 +10,11 @@
                     <p class="card-text">
                         <b>Author:</b> {{item.AUTHOR}}<br>
                         <b>Owned by:</b> {{item.OWNER_NAME}}<br>
+                        <b>Condition:</b>
+                        <a *ngIf="item.BOOK_CONDITION==='G'" class="d-inline text-white ms-2 mb-0" style="text-decoration:none;">Good</a>
+                        <a *ngIf="item.BOOK_CONDITION==='SD'" class="d-inline text-white ms-2 mb-0"
+                            style="text-decoration:none; font-size:15px;">Slightly Damaged</a>
+                        <a *ngIf="item.BOOK_CONDITION==='D'" class="d-inline text-white ms-2 mb-0" style="text-decoration:none;">Damaged</a><br>
                         <b>Return by:</b> {{item.RETURN_DATE | date: 'yyyy-MM-dd'}}<br>
                         <b>Delivery:</b> {{item.DELIVERY_METHOD}}<br>
                         <b>Status:</b> {{item.STATUS}}
